@@ -23,7 +23,7 @@ const Navbar = () => {
 
   const navItems = (
     <>
-      <li><a className="text-green">Home</a></li>
+      <li><a className="text-green" href="/">Home</a></li>
       <li tabIndex={0}>
         <details>
           <summary>Menu</summary>
