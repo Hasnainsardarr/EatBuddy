@@ -15,7 +15,7 @@ const Menu = () => {
     // Fetch data from the backend
     const fetchData = async () => {
       try {
-        const response = await fetch("/menu.json");
+        const response = await fetch("http://localhost:6001/menu");
         const data = await response.json();
         setMenu(data);
         setFilteredItems(data); // Initially, display all items
@@ -87,7 +87,7 @@ const Menu = () => {
       <div className="max-w-screen-2xl container mx-auto xl:px-24 px-4 bg-gradient-to-r from-0% from-[#FAFAFA] to-[#FCFCFC] to-100%">
         <div className="py-48 flex flex-col items-center justify-center">
           {/* content */}
-          <div className=" text-center px-8 space-y-7">
+          <div className=" text-center px-4 space-y-7">
             <h2 className="md:text-5xl text-4xl font-bold md:leading-snug leading-snug">
               For the Love of Delicious <span className="text-green">Food</span>
             </h2>
@@ -105,10 +105,10 @@ const Menu = () => {
 
       {/* menu shop  */}
       <div className="section-container">
-        <div className="flex flex-col px-8 md:flex-row flex-wrap md:justify-between items-center space-y-3 mb-8">
+        <div className="flex flex-col md:flex-row flex-wrap md:justify-between items-center space-y-3 mb-8">
           
            {/* all category buttons */}
-          <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4  flex-wrap ">
+          <div className="flex flex-row justify-start md:items-center md:gap-8 gap-4  flex-wrap">
             <button
               onClick={showAll}
               className={selectedCategory === "all" ? "active" : ""}
@@ -168,15 +168,15 @@ const Menu = () => {
         </div>
 
         {/* product card */}
-        <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 px-8 ">
-          {currentItems.map((item) => (
-            <Cards key={item._id} item={item} />
+        <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 ">
+          {currentItems.map((item, index) => (
+            <Cards key={index} item={item} />
           ))}
         </div>
       </div>
 
        {/* Pagination */}
-       <div className="flex justify-center my-8">
+       <div className="flex justify-center my-8 flex-wrap gap-2">
         {Array.from({ length: Math.ceil(filteredItems.length / itemsPerPage) }).map((_, index) => (
           <button
             key={index + 1}
